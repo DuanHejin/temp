@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>timepicker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.11.14/jquery.timepicker.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timepicker@1.11.14/jquery.timepicker.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="time-demo">
+    </div>
+</body>
+<script>
+    function loadTimer() {
+        var options = {
+            timeFormat: 'H\\:i'
+        };
+        $('.time-demo').timepicker(options);
+    }
+    $(loadTimer());
+</script>
+</html>

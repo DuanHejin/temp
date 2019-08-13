@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List</title>
+    <link rel="stylesheet" href="./list.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="header text-center">
+        Header
+    </div>
+    <div class="container-wrapper">
+        <div class="nav">
+            <ul class="nav-list"></ul>
+        </div>
+        <div class="sub-nav">
+            <ul class="sub-nav-list"></ul>
+        </div>
+        <div class="container"></div>
+    </div>
+</body>
+<script>
+    function getMokeData() {
+        return {
+            Data: {
+                MenuAuthority: [
+                    {
+                        AuthAction: '',
+                        AuthName: '首页',
+                        ChildMenu: [
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '系统首页',
+                                ChildMenu: [
+                                    {
+                                        AuthAction: 'xxxxxxxx',
+                                        AuthName: '系统首页-1',
+                                        ChildMenu: []
+                                    },
+                                    {
+                                        AuthAction: 'xxxxxxxx',
+                                        AuthName: '系统首页-2',
+                                        ChildMenu: []
+                                    },
+                                    {
+                                        AuthAction: 'xxxxxxxx',
+                                        AuthName: '系统首页-3',
+                                        ChildMenu: []
+                                    },
+                                ]
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '账户设置',
+                                ChildMenu: [
+                                    {
+                                        AuthAction: 'xxxxxxxx',
+                                        AuthName: '账户设置-1',
+                                        ChildMenu: []
+                                    },
+                                    {
+                                        AuthAction: 'xxxxxxxx',
+                                        AuthName: '账户设置-2',
+                                        ChildMenu: []
+                                    },
+                                    {
+                                        AuthAction: 'xxxxxxxx',
+                                        AuthName: '账户设置-3',
+                                        ChildMenu: []
+                                    },
+                                ]
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '登录日志',
+                                ChildMenu: []
+                            },
+                        ]
+                    },
+                    {
+                        AuthAction: '',
+                        AuthName: '权限',
+                        ChildMenu: [
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '门店管理',
+                                ChildMenu: []
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '成员管理',
+                                ChildMenu: []
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '角色管理',
+                                ChildMenu: []
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '操作日志',
+                                ChildMenu: []
+                            },
+                        ]
+                    },
+                    {
+                        AuthAction: '',
+                        AuthName: '资源权限管理',
+                        ChildMenu: [
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '资源权限管理1-1',
+                                ChildMenu: []
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '资源权限管理1-2',
+                                ChildMenu: []
+                            },
+                            {
+                                AuthAction: 'xxxxxxxx',
+                                AuthName: '资源权限管理1-3',
+                                ChildMenu: []
+                            },
+                        ]
+                    },
+                ]
+            }
+        }
+    }
+
+    function onClickSubNav(authName) {
+        console.log(authName);
+    }
+
+    function createSubNavElement(nav) {
+        var subNavHeader = `<li class="sub-nav-header">${nav.AuthName}</li>`;
+        var subNavContent = '';
+        $.each(nav.ChildMenu, function(index, el) {
+            subNavContent += `<li onclick="onClickSubNav('${el.AuthName}')"><a href="${el.AuthAction}"></a>●&nbsp;${el.AuthName}</li>`;
+        });
+        $('.sub-nav-list').append(subNavHeader + subNavContent);
+    }
+
+    function onClickNav(authName, event) {
+        if (!authName) {
+            return;
+        }
+        $('.sub-nav-list').empty();
+        var response = this.getMokeData();
+        var selectedNav = response.Data.MenuAuthority.find((el) => el.AuthName === authName);
+        $.each(selectedNav.ChildMenu, (index, nav) => {
+            createSubNavElement(nav);
+        })
+    }
+
+    function onPageLoad() {
+        var response = this.getMokeData();
+        var firstElement = null;
+        $.each(response.Data.MenuAuthority, function(index, el) {
+            if (index === 0) {
+                firstElement = el;
+            }
+            var liElement = `<li onclick="onClickNav('${el.AuthName}')"><a href="${el.AuthAction}"></a>${el.AuthName}</li>`;
+            $('.nav-list').append(liElement);
+        });
+        onClickNav(firstElement.AuthName);
+    }
+    $(document).ready(
+        onPageLoad()
+    );
+</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="./dynamicTablePlugin.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <style>
+    .form-wrapper {
+        padding: 15px 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="userList">
+                </tbody>
+            </table>
+            <div><button class="btn btn-primary" onclick="onClickSubmit()">Submit</button></div>
+        </div>
+    </div>
+</body>
+<script>
+    let userList = null;
+    const getUserList = () => {
+        userList = [{id: 1, name: "tom", age: 11}];
+        return userList;
+    }
+
+    function onClickSubmit() {
+        console.log(userList);
+    }
+
+    $(document).ready(() => {
+        const users = getUserList();
+
+        var metaData = {
+            name: "",
+            age: ""
+        };
+        var renderRow = function(row, index) {
+            return `<tr>
+                        <td>No<br/>${index + 1}</td>
+                        <td><input name="name_${index}" value="${row.name}" onchange=dynamicTable.handleChange(this) /></td>
+                        <td><input name="age_${index}" value="${row.age}" onchange=dynamicTable.handleChange(this) /></td>
+                        <td>
+                            <button type="button" class="btn btn-default" onclick="dynamicTable.addRow()">Add</button>
+                            <button type="button" class="btn btn-default" onclick="dynamicTable.deleteRow(${index})">Delete</button>
+                        </td>
+                    </tr>`
+        }
+        var params = {
+            dataList: users,
+            metaData: metaData,
+            renderRow: renderRow,
+            targetId: "userList"
+        };
+        dynamicTable.init(params);
+    });
+
+
+</script>
+</html>

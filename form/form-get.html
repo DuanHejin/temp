@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../asserts/css/index.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="../asserts/js/common.js"></script>
+    <style>
+    .form-wrapper {
+        padding: 15px 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <form class="form form-horizontal" >
+                <div class="form-group">
+                    <lable class="control-label col-md-3">Name:</lable>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable class="control-label col-md-3">Pass:</lable>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline"><input type="checkbox">nameless</label>
+                    <label class="checkbox-inline"><input type="checkbox">majiko</label>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        下拉菜单
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                    </ul>
+                    </div> 
+                <div class="form-group text-center">
+                    <button class="btn btn-default fab fa-accessible-icon" type="button" onclick="onSubmit()">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function onSubmit() {
+        // $.get('http://localhost:3000/form-get', (data, status) => {
+        //     console.log(status);
+        // })
+        confirmValid();
+    }
+</script>
+</html>

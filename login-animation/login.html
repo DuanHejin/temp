@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>登录 - 食尚先生集团管理系统！</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/css/login.css?v=1.15" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="login-form-wrapper">
+            <img class="login-icon" src="/Content/images/login/logo.png" />
+            <div class="login-form-title">
+                <div class="login-form-title">
+                    <span class="login-chines-title">食尚先生商家业务管理系统</span>
+                    <p class="login-english-title">
+                        <span class="english-title-right">Mr.SHISHANG </span>
+                        <span class="english-title-left">Business Management System</span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-input-wrapper">
+                <div class="form-input">
+                    <img src="Content/images/login/userNameIcon.png" />
+                    <input type="text" class="user-name" id="txtUserPhone" placeholder="请输入手机号码">
+                </div>
+                <div class="form-input">
+                    <img src="Content/images/login/passwordIcon.png" />
+                    <input type="password" class="password" id="txtPwd" placeholder="请输入登录密码">
+                </div>
+                <button type="button" class="login-button" id="btnLogin">登 录</button>
+                <div class="error-wrapper hidden"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/bootstrapQ-master/bootstrapQ.min.js?v=1.3"></script>
+    <script src="Scripts/comm/base64.js"></script>
+    <script src="Scripts/comm/basepage.js?v=1.18"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "get",
+                url: "/api/UserInfo/GetMenuList",
+                success: function (json) {
+                    if (json && json.IsSuccess) {
+                        top.location.href = "index.html";
+                    }
+                }
+            });
+
+            var strTYUserInfo = $.basepage.CookieHelper("LoginWangsenOAInfo");
+            if (strTYUserInfo != "") {
+                var TYUserInfo = $.parseJSON(strTYUserInfo);
+                if (TYUserInfo != undefined) {
+                    var base64 = new Base64();
+                    $("#txtUserPhone").val(TYUserInfo.LoginName);
+                    $("#txtPwd").val(base64.decode(TYUserInfo.Password));
+                }
+            }
+
+            //回车事件
+            $("#txtPwd").bind("keydown", function (e) {
+                if (e.keyCode == 13) {
+                    $("#btnLogin").click();
+                }
+            });
+
+            //登入
+            $("#btnLogin").bind("click", function () {
+
+                $(".error-wrapper").addClass("hidden");
+
+                var userPhone = $("#txtUserPhone").val();
+                var password = $("#txtPwd").val();
+                if (userPhone === "") {
+                    $("#txtUserPhone").focus();
+                    loginError("请输入手机号码!");
+                    return false;
+                }
+                else if (password === "") {
+                    $("#txtPwd").focus();
+                    loginError("请输入密码!");
+                    return false;
+                }
+
+                var loginReq = { phone: userPhone, password: password, adminLogin: "1" };
+                $.ajax({
+                    type: "POST",
+                    url: "/api/UserInfo/Login",
+                    contentType: "application/json; charset=utf-8", //必须有
+                    dataType: "json", //表示返回值类型，不必须
+                    data: JSON.stringify(loginReq),
+                    success: function (data) {
+                        if (data != null) {
+                            if (data.IsSuccess) {
+                                var base64 = new Base64();
+                                var userInfo = { LoginName: loginReq.user, Password: base64.encode(loginReq.password) };
+                                $.basepage.CookieHelper("LoginWangsenOAInfo", JSON.stringify(userInfo), { expires: 7 });
+                                top.location.href = "index.html";
+                            } else {
+                                loginError(data.Msg);
+                            }
+                        }
+
+                    }
+                });
+
+            });
+        });
+
+        function loginError(msg) {
+            $(".error-wrapper").removeClass("hidden");
+            $("#btnLogin").addClass("has-error");
+            $(".error-wrapper").text(msg);
+        }
+    </script>
+
+
+
+</body>
+</html>
