@@ -1,0 +1,27 @@
+.run {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width:50px;
+    height:50px;
+    border-radius: 5px;
+    background-color: #a6d8d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin200 {
+    margin-left: 200px;
+}
+
+.box {
+    width:50px;
+    height:50px;
+    border-radius:6px;
+    margin-top:4px;
+    display:inline-block
+}
+.green{
+    background-color:#6fb936;
+}

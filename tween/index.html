@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='./TweenMax.js'></script>
+    <link rel="stylesheet" href="./index.css">
+    <script>
+        function run() {
+            TweenMax.to('.box', 2, { x: 0, y: 400, repeat: -1, yoyo: true, yoyoEase: true, ease: Bounce.easeOut });
+            // TweenMax.to('.box', 3, {x: 450,overwrite:"none"});
+            //或者
+            // TweenMax.to('.box', 3, {x: 200,overwrite:0});
+        }
+        window.onload = run;
+    </script>
+</head>
+
+<body>
+    <div class="box green margin200"></div>
+
+    <div class="run" onclick="run()">Run</div>
+</body>
+
+</html>
