@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="./index.css">
     <style>
         .container {
-            margin: 0 auto;
+            margin: auto;
             display: flex;
             width: fit-content;
         }
         .container > div + div {
-            margin-left: 10px;
+            margin-left: 20px;
         }
     </style>
 </head>
@@ -23,13 +23,14 @@
 <body>
     <div class="container">
         <div class="box box-lg box-align-center green">A</div>
-        <div class="box box-lg box-align-center green">n</div>
-        <div class="box box-lg box-align-center green">m</div>
-        <div class="box box-lg box-align-center green">a</div>
-        <div class="box box-lg box-align-center green">t</div>
-        <div class="box box-lg box-align-center green">i</div>
-        <div class="box box-lg box-align-center green">o</div>
-        <div class="box box-lg box-align-center green">n</div>
+        <div class="box box-lg box-align-center aquamarine">n</div>
+        <div class="box box-lg box-align-center bisque">i</div>
+        <div class="box box-lg box-align-center aqua">m</div>
+        <div class="box box-lg box-align-center antiquewhite">a</div>
+        <div class="box box-lg box-align-center azure">t</div>
+        <div class="box box-lg box-align-center beige">i</div>
+        <div class="box box-lg box-align-center bisque">o</div>
+        <div class="box box-lg box-align-center blanchedalmond">n</div>
     </div>
 
     <div class="btn-area">
@@ -38,10 +39,9 @@
 </body>
 <script>
     function run() {
-        TweenMax.to('.box', 2, { x: 0, y: 400, rotation: 360, repeat: -1, yoyo: true, yoyoEase: true, ease: Bounce.easeOut });
-        // TweenMax.to('.box', 3, {x: 450,overwrite:"none"});
-        //或者
-        // TweenMax.to('.box', 3, {x: 200,overwrite:0});
+        TweenMax.staggerTo('.box', 1.5, {
+            x: 0, y: 400, rotation: 360, repeat: -1, repeatDelay: 1, yoyo: true, yoyoEase: true, ease: Power1.easeOut
+        }, 0.1);
     }
     window.onload = run;
 </script>
