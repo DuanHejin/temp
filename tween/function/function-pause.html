@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../TweenMax.js'></script>
+    <link rel="stylesheet" href="../index.css">
+</head>
+
+<body>
+    <div class="box green margin-left-200"></div>
+
+    <div class="btn-area">
+        <div class="btn" onclick="run()"><span class="btn-label">run</span></div>
+        <div class="btn" onclick="pause()"><span class="btn-label">pause</span></div>
+        <div class="btn" onclick="pauseResume()"><span class="btn-label">pause/Resume</span></div>
+        <div class="btn" onclick="restart()"><span class="btn-label">restart</span></div>
+    </div>
+</body>
+<script>
+    let target = null;
+    function run() {
+        target = TweenMax.to('.box', 6, { x: 400, y: 0, ease: Bounce.easeOut });
+        target.play();
+    }
+    function restart() {
+        target.restart();
+    }
+    function pause() {
+        target.pause();
+    }
+    function pauseResume() {
+        target.paused(!target.paused());
+    }
+</script>
+
+</html>
