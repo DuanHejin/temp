@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	html * {
+		box-sizing: border-box;
+	}
+	.container {
+		padding: 20px;
+	}
+	.bubble {
+		margin: 20px 0;
+	}
+	.bubble {
+		max-width: 200px;
+		padding: 8px;
+		color: black;
+		background-color: white;
+		border: 1px solid grey;
+		border-radius: 20px;
+		position: relative;
+	}
+	.bubble.top:before {
+		content: "";
+		position: absolute;
+		display: block;
+		right: 40px;
+		top: -20px;
+		width: 0;
+		border-width: 0 10px 20px;
+		border-color: transparent transparent grey;
+		border-style: solid;
+	}
+	.bubble.top:after {
+		content: "";
+		position: absolute;
+		display: block;
+		right: 41px;
+		top: -18px;
+		width: 0;
+		border-width: 0 9px 20px;
+		border-color: transparent transparent white;
+		border-style: solid;
+	}
+	.bubble.bottom:before {
+		content: "";
+		position: absolute;
+		display: block;
+		left: 40px;
+		bottom: -20px;
+		width: 0;
+		border-width: 20px 10px 0;
+		border-color: grey transparent transparent;
+		border-style: solid;
+	}
+	.bubble.bottom:after {
+		content: "";
+		position: absolute;
+		display: block;
+		left: 41px;
+		bottom: -18px;
+		width: 0;
+		border-width: 20px 9px 0;
+		border-color: white transparent transparent;
+		border-style: solid;
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="bubble top">
+			test
+		</div>
+		<div class="bubble bottom">
+			test
+		</div>
+	</div>
+	
+</body>
+</html>
