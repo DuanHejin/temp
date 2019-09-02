@@ -32,7 +32,25 @@
         .forHover:hover + .target {
             animation-name: moveAndRotate;
             animation-duration: 2s;
+            /*animation-iteration-count: infinite;*/
             /*animation-fill-mode: forwards;*/
+            /*animation-timing-function: steps(4, start);*/
+        }
+        .forHover:hover + .target + .target {
+            animation-name: moveAndRotate;
+            animation-duration: 2s;
+            animation-timing-function: steps(4, end);
+        }
+        /* FIXUP use suitable selector */
+        .forHover:hover + .target + .target + .target {
+            animation-name: moveAndRotate;
+            animation-duration: 2s;
+            /*animation-timing-function: steps(4, jump-none);*/
+        }
+        .forHover:hover + .target + .target + .target + .target {
+            animation-name: moveAndRotate;
+            animation-duration: 2s;
+            /*animation-timing-function: steps(4, jump-both);*/
         }
     </style>
 </head>
@@ -40,6 +58,9 @@
 <div class="margin-left-200 container">
     <div class="box box-lg green box-align-center forHover">hover</div>
     <div class="box box-lg aquamarine box-align-center target">target</div>
+    <!--<div class="box box-lg aquamarine box-align-center target">target2</div>-->
+    <!--<div class="box box-lg aquamarine box-align-center target">target3</div>-->
+    <!--<div class="box box-lg aquamarine box-align-center target">target4</div>-->
 </div>
 </body>
 </html>
