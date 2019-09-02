@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .container {
+            margin: auto;
+            display: flex;
+            width: fit-content;
+        }
+        .container > div {
+            width: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .container > div + div {
+            margin-left: 20px;
+        }
+
+        @keyframes moveAndRotate {
+            from {}
+            to {
+                transform: translateY(400px) rotate(360deg);
+                background-color: rebeccapurple;
+            }
+        }
+        .forHover:hover + .target {
+            animation-name: moveAndRotate;
+            animation-duration: 2s;
+            /*animation-fill-mode: forwards;*/
+        }
+    </style>
+</head>
+<body>
+<div class="margin-left-200 container">
+    <div class="box box-lg green box-align-center forHover">hover</div>
+    <div class="box box-lg aquamarine box-align-center target">target</div>
+</div>
+</body>
+</html>

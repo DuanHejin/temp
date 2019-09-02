@@ -16,21 +16,26 @@
     <div class="btn-area">
         <div class="btn" onclick="run()"><span class="btn-label">run</span></div>
         <div class="btn" onclick="pause()"><span class="btn-label">pause</span></div>
+        <div class="btn" onclick="resume()"><span class="btn-label">resume</span></div>
         <div class="btn" onclick="pauseResume()"><span class="btn-label">pause/Resume</span></div>
         <div class="btn" onclick="restart()"><span class="btn-label">restart</span></div>
+        <div class="btn" onclick="restart(true)"><span class="btn-label">restart(true)</span></div>
     </div>
 </body>
 <script>
     let target = null;
     function run() {
-        target = TweenMax.to('.box', 6, { x: 400, y: 0, ease: Bounce.easeOut });
+        target = TweenMax.to('.box', 6, { x: 400, y: 0, delay: 1, ease: Bounce.easeOut });
         target.play();
     }
-    function restart() {
-        target.restart();
+    function restart(immediate = false) {
+        target.restart(immediate);
     }
     function pause() {
         target.pause();
+    }
+    function resume() {
+        target.resume();
     }
     function pauseResume() {
         target.paused(!target.paused());

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .container {
+            margin: auto;
+            width: 100%;
+            padding-bottom: 100px;
+            position: relative;
+        }
+        .container > .forHover {
+            width: 100%;
+        }
+
+        .tail {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 19px;
+            margin: 0 auto;
+            width: 122px;
+            height: 95px;
+            background-image: url("./assets/icon_tail_animation_01.png");
+            background-size: 122px 8075px;
+        }
+
+        @keyframes sprite-members-footer-tail {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 0 -7980px;
+            }
+        }
+        body:hover .tail {
+            animation: sprite-members-footer-tail 5s steps(84) infinite;
+        }
+    </style>
+</head>
+<body>
+<div class="margin-left-200 container">
+    <div class="box box-lg darkgrey box-align-center forHover">Cat</div>
+    <div class="box box-lg box-align-center tail"></div>
+</div>
+</body>
+</html>

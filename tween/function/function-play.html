@@ -15,18 +15,22 @@
 
     <div class="btn-area">
         <div class="btn" onclick="run()"><span class="btn-label">run</span></div>
+        <div class="btn" onclick="killY()"><span class="btn-label">killY</span></div>
         <div class="btn" onclick="restart()"><span class="btn-label">restart</span></div>
     </div>
 </body>
 <script>
     let target = null;
     function run() {
-        target = TweenMax.to('.box', 4, { x: 400, y: 0, ease: Bounce.easeOut });
+        target = TweenMax.to('.box', 4, { x: 400, y: 400, opacity: 1, ease: Bounce.easeOut });
         target.play();
         // target.play(2);
     }
     function restart() {
         target.restart();
+    }
+    function killY() {
+        target.kill({y: 0});
     }
 </script>
 
