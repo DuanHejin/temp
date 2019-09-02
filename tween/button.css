@@ -1,0 +1,23 @@
+/* ================= btn css start ================= */
+.btn-area {
+    position: absolute;
+    right: .1rem;
+    bottom: .1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn {
+    height: .5rem;
+    border-radius: .05rem;
+    background-color: #a6d8d0;
+    text-align: center;
+    padding: .15rem .1rem;
+    cursor: pointer;
+}
+.btn + .btn {
+    margin-left: .1rem;
+}
+.btn > .btn-label {
+    text-transform: capitalize;
+}

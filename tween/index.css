@@ -1,3 +1,7 @@
+@import './color.css';
+@import './box.css';
+@import './button.css';
+
 /* ================= global css start ================= */
 html {
     font-size: 625%;
@@ -14,75 +18,4 @@ html * {
 
 .margin-left-200 {
     margin-left: 200px;
-}
-.green{
-    background-color:#6fb936;
-}
-.aquamarine {
-    background-color: aquamarine;
-}
-.aqua {
-    background-color: aqua;
-}
-.antiquewhite {
-    background-color: antiquewhite;
-}
-.azure {
-    background-color: azure;
-}
-.beige {
-    background-color: beige;
-}
-.bisque {
-    background-color: bisque;
-}
-.blanchedalmond {
-    background-color: blanchedalmond;
-}
-.bisque {
-    background-color: bisque;
-}
-
-/* ================= box css start ================= */
-.box {
-    width: .5rem;
-    height: .5rem;
-    border-radius: .06rem;
-    margin-top: .04rem;
-    display:inline-block
-}
-.box-align-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.box-lg {
-    width: 1rem;
-    height: 1rem;
-    font-size: .5rem;
-}
-
-
-/* ================= btn css start ================= */
-.btn-area {
-    position: absolute;
-    right: .1rem;
-    bottom: .1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.btn {
-    height: .5rem;
-    border-radius: .05rem;
-    background-color: #a6d8d0;
-    text-align: center;
-    padding: .15rem .1rem;
-    cursor: pointer;
-}
-.btn + .btn {
-    margin-left: .1rem;
-}
-.btn > .btn-label {
-    text-transform: capitalize;
 }
