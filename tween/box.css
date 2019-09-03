@@ -4,7 +4,7 @@
     height: .5rem;
     border-radius: .06rem;
     margin-top: .04rem;
-    display:inline-block
+    /*display:inline-block*/
 }
 .box-align-center {
     display: flex;

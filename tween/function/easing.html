@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='../TweenMax.js'></script>
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .box {
+            width: 100px;
+        }
+        div.margin-left-200 {
+            margin-right: 200px;
+        }
+        div.margin-left-200 + div {
+            margin-top: 10px;
+            border-top: 1px solid grey;
+        }
+        h2 {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="margin-left-200 back">
+        <h2>back</h2>
+        <div class="box box-align-center green easeIn">easeIn</div>
+        <div class="box box-align-center green easeInOut">easeInOut</div>
+        <div class="box box-align-center green easeOut">easeOut</div>
+    </div>
+    <div class="margin-left-200 bounce">
+        <h2>bounce</h2>
+        <div class="box box-align-center green easeIn">easeIn</div>
+        <div class="box box-align-center green easeInOut">easeInOut</div>
+        <div class="box box-align-center green easeOut">easeOut</div>
+    </div>
+
+</body>
+<script>
+
+    TweenMax.to('.back .easeIn', 4, { x: 600, repeat: -1, repeatDelay: 1, yoyo: false, ease: Back.easeIn });
+    TweenMax.to('.back .easeInOut', 4, { x: 600, repeat: -1, repeatDelay: 1, yoyo: false, ease: Back.easeInOut });
+    TweenMax.to('.back .easeOut', 4, { x: 600, repeat: -1, repeatDelay: 1, yoyo: false, ease: Back.easeOut });
+
+    TweenMax.to('.bounce .easeIn', 4, { x: 600, repeat: -1, repeatDelay: 1, yoyo: false, ease: Bounce.easeIn });
+    TweenMax.to('.bounce .easeInOut', 4, { x: 600, repeat: -1, repeatDelay: 1, yoyo: false, ease: Bounce.easeInOut });
+    TweenMax.to('.bounce .easeOut', 4, { x: 600, repeat: -1, repeatDelay: 1, yoyo: false, ease: Bounce.easeOut });
+</script>
+</html>

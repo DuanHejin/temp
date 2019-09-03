@@ -12,6 +12,7 @@
 
 <body>
     <div class="box green margin-left-200"></div>
+    <div id="text"></div>
 
     <div class="btn-area">
         <div class="btn" onclick="run()"><span class="btn-label">run</span></div>
@@ -20,9 +21,18 @@
     </div>
 </body>
 <script>
+    let count = 0;
+    let handleCompelete = () => {
+        document.getElementById('text').innerText = `Animation Finished. Count is ${++count}`;
+    };
+    let handleStart = () => {
+        document.getElementById('text').innerText = `Animation Start`;
+    };
     let target = null;
     function run() {
-        target = TweenMax.to('.box', 4, { x: 400, y: 400, opacity: 1, ease: Bounce.easeOut });
+        target = TweenMax.to('.box', 3, { x: 400, y: 400, opacity: 1, ease: Bounce.easeOut,
+            onStart: handleStart,
+            onComplete: handleCompelete });
         target.play();
         // target.play(2);
     }
