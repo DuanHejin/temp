@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .form {
+      position: relative;
+    }
+    .left {
+      width: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .right {
+      position: absolute;
+      left: 50px;
+      top: 0;
+      padding: 0 20px;
+    }
+
+    .row {
+      height: 30px;
+    }
+
+    .circle {
+      position: relative;
+      transform: translateY(50%);
+      border-radius: 5px;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    }
+
+    .circle:first-child {
+      margin-top: 0;
+    }
+
+    .circle:before {
+      position: absolute;
+      border: 1px solid #999;
+      width: 50px;
+      height: 50px;
+      display: block;
+      content: '';
+      left: 50%;
+      z-index: 1;
+      top: -54px;
+      margin-left: -1px;
+    }
+
+    .circle:first-child:before {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form">
+
+    <div class="left">
+      <div class="row">
+        <div class="circle"></div>
+      </div>
+      <div class="row">
+        <div class="circle"></div>
+      </div>
+      <div class="row">
+        <div class="circle"></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="row">
+        <span>1.xxxxxx</span>
+        <span>分配</span>
+      </div>
+      <div class="row">
+        <span>2.xxxxxx</span>
+        <span>分配</span>
+      </div>
+      <div class="row">
+        <span>3.xxxxxx</span>
+        <span>分配</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

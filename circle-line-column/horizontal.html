@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<style media="all">
+		.line {
+			border-top: 1px solid #30353b;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			margin: 40px auto 0;
+			width: 80%;
+			position: relative;
+		}
+
+		.line:before,
+		.line:after {
+			content: "";
+			width: 10px;
+			height: 10px;
+			background: #30353b;
+			border-radius: 5px;
+			position: absolute;
+			top: -6px;
+		}
+
+		.line:after {
+			right: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="line"></div>
+
+</body>
+
+</html>
