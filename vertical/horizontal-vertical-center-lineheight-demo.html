@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]><html class="ie6"><![endif]-->
+<!--[if IE 7 ]><html class="ie7"><![endif]-->
+<!--[if IE 8 ]><html class="ie8"><![endif]-->
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>不定宽高定位</title>
+    <meta content="" name="Description" />
+    <meta content="" name="Keywords" />
+    <link rel="stylesheet" type="text/css" href="" />
+    <script type="text/javascript"></script>
+    <style>
+        .wp {
+            border: 1px solid red;
+            width: 300px;
+            height: 300px;
+            /* 2、不定宽高居中  */
+            text-align: center;
+            line-height: 300px;
+            font-size: 0px;
+        }
+        
+        .box {
+            /* 2、不定宽高居中lineheight */
+            display: inline-block;
+            vertical-align: middle;
+            line-height: inherit;
+            text-align: left;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wp">
+        <div class="box">
+            子元素不定宽高
+        </div>
+    </div>
+</body>
+
+</html>

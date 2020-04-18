@@ -15,22 +15,27 @@
             background: #00c099;
         }
         .container-wrapper {
-            position: absolute;
             width: 100%;
-            top: calc(50% - 150px);
+            height: 100%;
         }
-        .container-wrapper .login-form {
+        .login-form {
             border-radius: 2px;
             background: #ffffff;
             width: 400px;
             height: 300px;
-            margin: 0 auto;
+        }
+        .vertical-center {
+            position: relative;
+            /* position: absolute; */
+            /* top: calc(50% - 150px); */
+            top: 50%;
+            transform: translateY(-50%);
         }
     </style>
 </head>
 <body>
     <div class="container-wrapper">
-        <div class="login-form">
+        <div class="login-form vertical-center">
             here is login form
         </div>
     </div>

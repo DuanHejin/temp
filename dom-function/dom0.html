@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM0 Event</title>
+  <style>
+    div {
+      width: 100%;
+      height: 400px;
+      background: aquamarine;
+    }
+  </style>
+</head>
+<body>
+  <div id="dom0"></div>
+  <button onclick="removeEvent()">removeEvent</button>
+</body>
+<script>
+  var count = 0;
+  function handleClick(event) {
+    console.log("handleClick");
+    ++count;
+    event.target.innerHTML = "handleClick" + count;
+  }
+  const dom0 = document.getElementById("dom0");
+  dom0.onclick = handleClick;
+
+  function removeEvent() {
+    dom0.onclick = null;
+  }
+</script>
+</html>

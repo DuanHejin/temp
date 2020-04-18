@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM2 event</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      width: 100%;
+      height: 400px;
+      background: aquamarine;
+      display: flex;
+      justify-content: center;
+    }
+    div > div {
+      margin: 16px;
+      height: 200px;
+      width: 200px;
+      background: azure;
+    }
+  </style>
+</head>
+<body>
+  <div id="dom2">
+    <div id="dom2-inner"></div>
+  </div>
+  <button onclick="removeEvent()">removeEvent1</button>
+</body>
+<script>
+  var count = 0;
+  function handleClick(event) {
+    console.log("handleClick");
+    ++count;
+    // event.target.innerText = "handleClick" + count;
+  }
+
+  var count2 = 0;
+  function handleClick2(event) {
+    console.log("handleClick2");
+    ++count2;
+    // event.target.innerText = event.target.innerText + "<BR>" + "handleClick2 " + count2;
+  }
+  const dom2 = document.getElementById("dom2");
+  dom2.addEventListener("click", handleClick, false);
+  const dom2Inner = document.getElementById("dom2-inner");
+  dom2Inner.addEventListener("click", handleClick2, true);
+
+  function removeEvent() {
+    dom2.removeEventListener("click", handleClick);
+  }
+</script>
+</html>

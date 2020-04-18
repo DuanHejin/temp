@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      margin: 2rem;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(1); background-color: greenyellow;}
+      to { transform: scale(1.2); background-color: red;}
+    }
+    
+    div {
+      animation: zoomIn 1s ease-in 1s 1 alternate forwards;
+    }
+
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

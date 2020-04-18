@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+    <style>
+        html, body {
+            height: 100%;
+            padding: 0 0;
+            margin: 0 0;
+        }
+        body {
+            background: #00c099;
+        }
+        .container-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+        .login-form {
+            border-radius: 2px;
+            background: #ffffff;
+            height: 300px;
+        }
+        .horizontal-center {
+            float: left;
+            width: 400px;
+            margin-left: calc(50% - 200px);
+            /* margin-left: 50%;
+            transform: translateX(-50%); */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="login-form horizontal-center">
+            <p>
+                设置float:left;<BR>
+                设置固定width;<BR>
+                设置margin-left: calc(50% - 元素width/2);<BR>
+                或者margin-left: 50%; transform: translateX(-50%); 这样就不用知道元素的width，实用性强
+
+            </p>
+            <pre>
+            .horizontal-center {
+                float: left;
+                width: 400px;
+                margin-left: calc(50% - 200px);
+                /* left: 50%;
+                transform: translateX(-50%); */
+            }
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

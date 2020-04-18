@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM3 event</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      width: 100%;
+      height: 400px;
+      background: aquamarine;
+      display: flex;
+      justify-content: center;
+    }
+    div > div {
+      margin: 16px;
+      width: 200px;
+      height: 200px;
+      background: azure;
+    }
+    input {
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="dom3">
+    <div id="dom3-inner">
+      <input type="text">
+    </div>
+  </div>
+  <button onclick="removeEvent()">removeEvent1</button>
+</body>
+<script>
+  var count = 0;
+  function handleFocus(event) {
+    console.log("handleFocus");
+    ++count;
+    event.target.value = "handleFocus" + count;
+  }
+  function handleBlur(event) {
+    console.log("handleBlur");
+    ++count;
+    event.target.value = "handleBlur" + count;
+  }
+  const dom3 = document.getElementsByTagName("input")[0];
+  dom3.addEventListener("focus", handleFocus);
+  dom3.addEventListener("blur", handleBlur);
+</script>
+</html>

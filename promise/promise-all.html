@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      height: 200px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="info"></div>
+  <button onclick="handleClick()">getUser</button>
+</body>
+<script>
+  function getUser() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({id: 1, name: 'user1'})
+      }, 0);
+    });
+  }
+  function getUser2() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({id: 2, name: 'user2'})
+      }, 0);
+    });
+  }
+  function getUser3() {
+    return new Promise((resolve, reject) => {
+      // setTimeout(() => {
+        reject({msg: 'reject from getUser3'})
+      // }, 0);
+    });
+  }
+  const promise1 = new Promise((resolve, reject) => {
+    reject(1111)
+  });
+
+  const dom = document.getElementById("info");
+
+  function handleClick() {
+    Promise.all([
+      getUser(),
+      getUser2(),
+      getUser3(),
+      promise1,
+    ]).then((user) => {
+      dom.innerHTML = JSON.stringify(user);
+    }).then((params) => {
+      
+    }, (error) => {
+      dom.innerHTML = 'onRejected ' + JSON.stringify(error);
+    }).catch((error) => {
+      // will never reach this line because the onRejected handler already catch the error
+      dom.innerHTML = 'catch ' + JSON.stringify(error);
+    });
+  }
+
+</script>
+</html>
