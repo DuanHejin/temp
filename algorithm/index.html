@@ -4,8 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document</title>
-  <script src="./generateRandomList.js"></script>
-  <script src="./LoggerUtils.js"></script>
+  <script src="./utils/generateRandomList.js"></script>
+  <script src="./utils/LoggerUtils.js"></script>
+  <script src="./utils/sortUtils.js"></script>
   <script src="./maopao.js"></script>
   <script src="./quickSort.js"></script>
   <script src="./selectionSort.js"></script>
@@ -15,8 +16,11 @@
   <div>
     <input id="listLength" type="number">
     <button onclick="generateList()">generateList</button>
-    <button onclick="myBubbleSort()">bubbleSort</button>
-    <button onclick="myQuickSort()">quickSort</button>
+    <button onclick="generateList(10)">generateList(10)</button>
+    <button onclick="generateList(15)">generateList(15)</button>
+    <BR>
+    <button onclick="myBubbleSort()">myBubbleSort</button>
+    <button onclick="myQuickSort()">myQuickSort</button>
     <button onclick="mySelectionSort()">mySelectionSort</button>
     <button onclick="myInsertionSort()">myInsertionSort</button>
   </div>
@@ -27,9 +31,11 @@
   const dataArea = document.getElementById("dataArea");
   
   let randomList = [];
-  function generateList(max = 5) {
-    const lengthStr = document.getElementById("listLength").value;
-    const length = lengthStr ? parseInt(lengthStr) : max;
+  function generateList(max) {
+    const listLengthDom = document.getElementById("listLength");
+    const listLength = listLengthDom.value;
+    const length = max ? max : listLength ? parseInt(listLength) : 5;
+    listLengthDom.value = length;
     randomList = DHJ.generateRandomList(length);
     dataArea.innerHTML = `
     length: ${randomList.length}
@@ -47,21 +53,27 @@
     // maopaoReverse(randomList);
     // maopaoReverse2(randomList);
     console.timeEnd("myBubbleSort");
-    console.log(randomList.join("   "))
+    // console.log(randomList.join("   "))
   }
 
   function myQuickSort() {
     console.time("myQuickSort");
-    quickSort(randomList);
+    const newArray = [].concat(randomList);
+
+    quickSort(newArray);
+    // quickSort2(newArray);
+    // SortUtils.quickSort(newArray);
+
+    console.log("sorted array result: ", newArray.join("   "));
     console.timeEnd("myQuickSort");
-    console.log(randomList.join("   "))
+    // console.log(randomList.join("   "))
   }
 
   function mySelectionSort() {
     console.time("mySelectionSort");
     selectionSort(randomList);
     console.timeEnd("mySelectionSort");
-    console.log(randomList.join("   "))
+    // console.log(randomList.join("   "))
   }
 
   function myInsertionSort() {
@@ -69,7 +81,7 @@
     // insertionSort(randomList);
     insertionSort2(randomList);
     console.timeEnd("myInsertionSort");
-    console.log(randomList.join("   "))
+    // console.log(randomList.join("   "))
   }
   
 

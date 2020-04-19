@@ -69,16 +69,17 @@
     let i = left;
     let j = right;
     while (i < j) {
-      while (array[i] <= pivot) {
-        i++;
-      }
-      array[j] = array[i];
-      while (array[j] >= pivot) {
+      while (i < j && array[j] >= pivot) {
         j--;
       }
       array[i] = array[j];
+      while (i < j && array[i] <= pivot) {
+        i++;
+      }
+      array[j] = array[i];
     }
     array[j] = pivot;
+    return j;
   }
 
   function swap(arr, i, j) {
