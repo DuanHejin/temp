@@ -1,7 +1,7 @@
 /* @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css); */
 /* @import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css); */
 
-@import '../bootstrap-3.3.7-dist/css/bootstrap.css';
+ @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 html, body {
     height: 100%;

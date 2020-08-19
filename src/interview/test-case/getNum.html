@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../src/assets/css/index.css">
+  <style>
+    #result {
+      height: 200px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form form-horizontal" >
+      <div class="form-group">
+        <p class="help-block text-center">
+          计算1234567898765432123456...这样的数，第n位是几?
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-2">输入第n位</label>
+        <div class="col-md-8">
+          <input class="form-control" id="n" type="text">
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-default" onclick="getNum()">getNum</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <textarea id="result" class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const dom = document.getElementById("result");
+  const domN = document.getElementById("n");
+
+  function getNum() {
+    const n = parseInt(domN.value);
+    const arr = [];
+    for (let i = 1; i <= 9; i++) {
+      arr.push(i);
+    }
+    for (let i = 8; i >= 2; i--) {
+      arr.push(i);
+    }
+    const index = n % arr.length === 0 ? arr.length - 1 : n % arr.length - 1;
+    dom.value = arr[index];
+  }
+
+</script>
+
+</html>
