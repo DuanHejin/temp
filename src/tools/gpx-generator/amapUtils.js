@@ -8,6 +8,7 @@ AMap.plugin([
   'AMap.Geolocation',
   'AMap.Driving',
   'AMap.Autocomplete',
+  'AMap.PlaceSearch',
 ], function () {
   var toolbar = new AMap.ToolBar();
   map.addControl(toolbar)
@@ -15,6 +16,22 @@ AMap.plugin([
   // 左下角定位plugin
   const geolocaion = new AMap.Geolocation();
   map.addControl(geolocaion);
+
+  // 实例化Autocomplete
+  const searchAutoOptions = {
+    // input 为绑定输入提示功能的input的DOM ID
+    input: 'searchTerm',
+    city: '苏州', // 优先在苏州市检索
+  }
+  const searchAutoComplete = new AMap.Autocomplete(searchAutoOptions);
+  const placeSearch = new AMap.PlaceSearch({
+    city:'苏州',
+    map: map
+  })
+  AMap.event.addListener(searchAutoComplete, 'select', function(e){
+    placeSearch.search(e.poi.name)
+  });
+
 
   // 实例化Autocomplete
   const startLocationAutoOptions = {
@@ -167,4 +184,14 @@ function download(filename, text) {
   element.click();
 
   document.body.removeChild(element);
+}
+
+function onclickMore() {
+  const domMore = document.getElementById('more');
+  const displayValue = domMore.style.display;
+  if (displayValue === 'none' || !displayValue) {
+    domMore.style.display = 'block';
+  } else {
+    domMore.style.display = 'none';
+  }
 }

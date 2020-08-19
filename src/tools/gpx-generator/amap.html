@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-  <link rel="stylesheet" href="../asserts/css/index.css">
+  <link rel="stylesheet" href="../../assets/css/index.css">
 
   <style type="text/css">
     body,
@@ -19,9 +19,14 @@
     #btnGroup {
       position: fixed;
       max-height: 90%;
-      top: 10px;
+      top: 15px;
       left: 100px;
       z-index: 999;
+      min-width: 650px;
+    }
+
+    #more {
+      display: none;
     }
 
     #panel {
@@ -50,9 +55,20 @@
 </head>
 
 <body>
-  <div id="btnGroup">
+  <div id="btnGroup" class="form form-horizontal">
     <div class="form-group">
-      <div class="row">
+      <div class="col-md-8">
+        <input id="searchTerm" type="text" class="form-control" placeholder="输入关键字检索">
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <button class="btn btn-default" onclick="onclickMore()">更多功能</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="more">
+      <div class="form-group">
         <div class="col-md-3">
           <input id="start_location" type="text" class="form-control" placeholder="输入起点">
         </div>
@@ -66,15 +82,15 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group btn-group">
-      <button class="btn btn-default" onclick="watchClick()">开始选点</button>
-      <button class="btn btn-default" onclick="stopWatchClick()">结束选点</button>
-    </div>
+      <div class="form-group">
+        <div class="btn-group col-md-12">
+          <button class="btn btn-default" onclick="watchClick()">开始选点</button>
+          <button class="btn btn-default" onclick="stopWatchClick()">结束选点</button>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <div class="row">
+      <div class="form-group">
         <div class="col-md-8">
           <input id="routeName" type="text" class="form-control" placeholder="输入线路名称">
         </div>
@@ -83,11 +99,12 @@
         </div>
       </div>
     </div>
+
   </div>
   <div id="container" tabindex="0"></div>
   <div id="panel"></div>
-  <!-- <script src="https://webapi.amap.com/maps?v=1.4.15&key=e7d4c6622d5f69a3d3fb317d78ecc3fd"></script>
-  <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script> -->
+  <script src="https://webapi.amap.com/maps?v=1.4.15&key=e7d4c6622d5f69a3d3fb317d78ecc3fd"></script>
+  <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
   <script src="./amapUtils.js"></script>
 </body>
 
