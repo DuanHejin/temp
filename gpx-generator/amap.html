@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <link rel="stylesheet" href="../asserts/css/index.css">
+
+  <style type="text/css">
+    body,
+    html,
+    #container {
+      width: 100%;
+      height: 100%;
+      margin: 0px
+    }
+
+    #btnGroup {
+      position: fixed;
+      max-height: 90%;
+      top: 10px;
+      left: 100px;
+      z-index: 999;
+    }
+
+    #panel {
+      position: fixed;
+      background-color: white;
+      max-height: 90%;
+      overflow-y: auto;
+      top: 10px;
+      right: 10px;
+      width: 280px;
+    }
+
+    #panel .amap-call {
+      background-color: #009cf9;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    #panel .amap-lib-driving {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      overflow: hidden;
+    }
+  </style>
+  <title>高德地图</title>
+</head>
+
+<body>
+  <div id="btnGroup">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-3">
+          <input id="start_location" type="text" class="form-control" placeholder="输入起点">
+        </div>
+        <div class="col-md-3">
+          <input id="end_location" type="text" class="form-control" placeholder="输入终点">
+        </div>
+        <div class="col-md-6">
+          <div class="btn-group">
+            <button class="btn btn-default" onclick="setDrivingRoute()">规划路线</button>
+            <button class="btn btn-default" onclick="downloadDrivingGpx()">下载规划路线gpx文件</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group btn-group">
+      <button class="btn btn-default" onclick="watchClick()">开始选点</button>
+      <button class="btn btn-default" onclick="stopWatchClick()">结束选点</button>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-8">
+          <input id="routeName" type="text" class="form-control" placeholder="输入线路名称">
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-default" onclick="downloadGpx()">下载gpx文件</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="container" tabindex="0"></div>
+  <div id="panel"></div>
+  <script src="https://webapi.amap.com/maps?v=1.4.15&key=e7d4c6622d5f69a3d3fb317d78ecc3fd"></script>
+  <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+  <script src="./amapUtils.js"></script>
+</body>
+
+</html>
