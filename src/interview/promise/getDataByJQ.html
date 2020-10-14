@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+  <div id="result"></div>
+  <!-- <script>
+    $(document).ready(function () {
+      $.get('http://localhost:3001/get/user/info', function (result) {
+        $.get('http://localhost:3001/get/city?city=' + result.city, function (city) {
+          console.log('city :>> ', city);
+          $('#result').text(JSON.stringify(city));
+        })
+      })
+    });
+  </script> -->
+  <script>
+    function getUserInfo() {
+      return new Promise((resolve, reject) => {
+        $.get('http://localhost:3001/get/user/info', function (result) {
+          resolve(result);
+        });
+      })
+    };
+    function getCity(city) {
+      return new Promise((resolve, reject) => {
+        $.get('http://localhost:3001/get/city?city=' + city, function (result) {
+          resolve(result);
+        })
+      });
+    }
+    $(document).ready(async () => {
+      const user = await getUserInfo();
+      const city = await getCity(user.city);
+      $('#result').text(JSON.stringify(city));
+    })
+  </script>
+</body>
+
+</html>
