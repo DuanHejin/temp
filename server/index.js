@@ -1,5 +1,12 @@
 const express = require('express');
+const path = require('path');
 const app = express();
+const handleProduction = require('./utils/handleProduction');
+
+
+// set static resource
+app.use(express.static(path.resolve(__dirname, 'public')));
+handleProduction(app, express, path);
 
 app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
