@@ -42,7 +42,7 @@ function quickSort(array, left = 0, right = array.length - 1) {
 
 function partition(array, left, right) {
   const pivotIndex = left;
-  const index = pivotIndex + 1;
+  let index = pivotIndex + 1;
   for (let i = index; i <= right.length; i++) {
     if (array[i] < array[pivotIndex]) {
       swap(array, i, index);
