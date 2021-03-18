@@ -1,3 +1,13 @@
+/**
+ * 实现EventEmmiter
+ * @example
+ * const ee = new EventEmitter();
+ * ee.on('update', console.log)
+ * ee.once('update', console.log)
+ * ee.emit('update', 'xxx')
+ * ee.off('update', console.log)
+ * 
+ */
 class EventEmitter {
 
   /**
