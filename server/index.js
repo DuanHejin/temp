@@ -8,7 +8,7 @@ const handleProduction = require('./utils/handleProduction');
 app.use(express.static(path.resolve(__dirname, 'public')));
 handleProduction(app, express, path);
 
-app.all('/', function(req, res, next) {
+app.use('/', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -16,8 +16,17 @@ app.all('/', function(req, res, next) {
   next();
 });
 
+let count = 0;
+
 app.get('/get/user/info', (req, res) => {
-  res.json({ id: 1, name: 'user-test', city: 10 });
+  const searchTerm = req.query['searchTerm'];
+  let time = 0;
+  while (time < 400) {
+    time = Math.random() * 1000;
+  };
+  setTimeout(() => {
+    res.json({ id: 1, name: 'user-test', city: 10, count: count++, searchTerm });
+  }, time)
 });
 
 app.get('/get/city', (req, res) => {

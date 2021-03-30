@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Throttle & Debounce</title>
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <script src="./throttle.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1></h1>
+    <div class="form-group">
+      <button class="btn btn-default" onclick="handleThrottle()">Throttle点我</button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" onclick="handleDebounce()">Debounce点我</button>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-md-6">
+          <input id="searchTerm" type="text" class="form-control" oninput="handleChange()">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
