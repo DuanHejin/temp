@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Height</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .root {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      height: 100px;
+      background-color: aquamarine;
+    }
+
+    .middle {
+      flex: 1;
+      display: flex;
+      background-color: #ccc;
+    }
+
+    .left {
+      width: 200px;
+      background-color: brown;
+    }
+
+    .right {
+      flex: 1;
+      background-color: cadetblue;
+    }
+
+    .footer {
+      height: 200px;
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="root">
+    <div class="header">header</div>
+    <div class="middle">
+      <div class="left">left</div>
+      <div class="right">right</div>
+    </div>
+    <div class="footer">footer</div>
+
+  </div>
+</body>
+
+</html>

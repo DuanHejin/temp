@@ -1,0 +1,108 @@
+/* 1px线 */
+.onePxBorder {
+  height: 1px;
+  background-color: red;
+  transform: scale(0.5);
+}
+
+/* 三角形 */
+.triangle {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  border-width: 30px;
+  border-style: solid;
+  border-color: transparent transparent red transparent;
+}
+
+/* 滚动 */
+.scroll-div {
+  max-height: 200px;
+  overflow: auto;
+}
+
+/* 滚动子元素 */
+.item {
+  height: 80px;
+  background-color: antiquewhite;
+}
+
+.item+.item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* 单行超出边界显示... */
+.white-space {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* 多行超出边界显示... */
+.multi-ellipsis {
+  position: relative;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+
+.multi-ellipsis::after {
+  content: '...';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+:root {
+  --BodyWidth: 1170
+}
+
+/* 正方形 */
+.square1 {
+  width: 20%;
+  height: calc(var(--BodyWidth) * 0.2px);
+  background-color: aqua;
+}
+
+.square2 {
+  width: 20%;
+  height: 0;
+  padding-top: 20%;
+  background-color: aqua;
+}
+
+.square3 {
+  width: 20%;
+  overflow: hidden;
+  background-color: aqua;
+}
+
+.square3::after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+
+/* 矩形 */
+.rectangle-wrap {
+  position: relative;
+  height: 500px;
+  background-color: #ccc;
+}
+
+.rectangle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  width: 40%;
+  height: 0;
+  padding-top: 20%;
+  /* width: 40%;
+  height: calc(var(--BodyWidth) * 9/16 * 0.4px); */
+  background-color: aqua;
+}

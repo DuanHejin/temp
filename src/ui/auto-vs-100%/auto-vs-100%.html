@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto vs 100%</title>
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <style>
+    .parent1 {
+      box-sizing: content-box;
+      width: 400px;
+      height: 100px;
+      padding: 10px;
+      margin: 15px;
+      background-color: #ccc;
+    }
+
+    .width100 {
+      width: 100%;
+      height: 100%;
+      background-color: aqua;
+    }
+    .parent2 {
+      box-sizing: border-box;
+      width: 400px;
+      height: 100px;
+      padding: 10px;
+      margin: 15px;
+      background-color: #ccc;
+    }
+
+    .width-auto {
+      width: auto;
+      height: 100%;
+      background-color: beige;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1></h1>
+    <div class="form-group parent1">
+      <div class="width100">W3C box width100</div>
+    </div>
+    <div class="form-group parent1">
+      <div class="width-auto">W3C box width-auto</div>
+    </div>
+
+    <div class="form-group parent2">
+      <div class="width100">IE box width100</div>
+    </div>
+    <div class="form-group parent2">
+      <div class="width-auto">IE box width-auto</div>
+    </div>
+
+  </div>
+</body>
+
+</html>

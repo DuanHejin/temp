@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clear Float</title>
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <style>
+    .row .control-label {
+      padding-top: 7px;
+    }
+
+    .my-row {}
+
+    /* .my-row:before, */
+    .my-row:after {
+      display: block;
+      content: " ";
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>base form</h2>
+    <div class="form">
+      <div class="form-group">
+        <label for="" class="control-label">name:</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="" class="control-label">age:</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <hr>
+    <h2>inline form</h2>
+    <div class="form form-inline">
+      <div class="form-group">
+        <label for="" class="control-label">name:</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="" class="control-label">age:</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <hr>
+    <h2>horizontal form</h2>
+    <div class="form form-horizontal">
+      <div class="form-group">
+        <label for="" class="control-label col-md-2">name:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="control-label col-md-2">age:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <h2>horizontal form using grid system</h2>
+    <div>
+      <div class="row form-group">
+        <label for="" class="control-label col-md-2">name:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label for="" class="control-label col-md-2">age:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <h2>horizontal form lack row</h2>
+    <div>
+      <div class="my-row form-group">
+        <label for="" class="control-label col-md-2">name:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="my-row form-group">
+        <label for="" class="control-label col-md-2">age:</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
