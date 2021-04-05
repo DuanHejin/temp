@@ -19,33 +19,33 @@
 // console.log('end');
 
 
-console.log('script start')
+console.log('script start')  // m1
 
 async function async1() {
   await async2()
-  console.log('async1 end')
+  console.log('async1 end') // v1
 }
 async function async2() {
-  console.log('async2 end')
+  console.log('async2 end') // m2
 }
 async1()
 
 setTimeout(function() {
-  console.log('setTimeout')
+  console.log('setTimeout') // h1
 }, 0)
 
 new Promise(resolve => {
-  console.log('Promise')
+  console.log('Promise') // m3
   resolve()
 })
   .then(function() {
-    console.log('promise1')
+    console.log('promise1') // v2
   })
   .then(function() {
-    console.log('promise2')
+    console.log('promise2') // v3
   })
 
-console.log('script end')
+console.log('script end') // m4
 
 // 预计：
 // script start

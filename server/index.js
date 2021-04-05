@@ -35,6 +35,15 @@ app.get('/get/city', (req, res) => {
   res.json({ id: 10, name: 'city-test' });
 });
 
+app.get('/delayRes', (req, res) => {
+  const index = req.query['index'];
+  // const time = index == 2 ? 2000 : 500;
+  const time = 100;
+  setTimeout(() => {
+    res.json({ timestamp: Date.now() });
+  }, time);
+})
+
 app.listen(3001, () => {
   console.log('server is running on port 3001')
 });
