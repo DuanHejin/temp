@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC</title>
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+    .bfc-overflow {
+      overflow: hidden;
+    }
+
+    .mar50 {
+      margin: 50px;
+    }
+
+    .float-left {
+      float: left;
+    }
+
+    .base1 {
+      height: 100px;
+      width: 100px;
+      background-color: #ccc;
+    }
+
+    .base2 {
+      height: 200px;
+      width: 200px;
+      background-color: #333;
+    }
+    .width-auto {
+      width: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>BFC取消margin合并现象</h2>
+    <div class="bfc-overflow">
+      <div class="base1 mar50"></div>
+    </div>
+    <div class="bfc-overflow">
+      <div class="base1 mar50"></div>
+    </div>
+
+    <hr>
+    <h2>BFC清除float元素脱离文档流现象</h2>
+    <div class="form-group">
+      <h4>使用bootstrap的网格布局/栅栏布局的时候，如果不在外层div设置row class，就会导致外层div高度塌陷</h4>
+    </div>
+    <h4>e.g.</h4>
+    <div class="form-group">
+      <label for="" class="control-label col-md-2">name</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="base2"></div>
+
+    <br>
+    <div class="clearfix"></div>
+    <div class="form-group">
+      <h4>外层使用了row class的场合</h4>
+    </div>
+    <div class="form-group row">
+      <label for="" class="control-label col-md-2">name</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h4>也可以通过将外层div设置为BFC，来清除float元素脱离文档流现象</h4>
+    </div>
+    <div class="form-group bfc-overflow">
+      <label for="" class="control-label col-md-2">name</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <hr>
+    <h2>BFC结合float，设计左侧定宽，右侧自适应布局</h2>
+
+    <div class="bfc-overflow">
+      <div class="base1 float-left"></div>
+      <div class="bfc-overflow">
+        <!-- <div class="base2 width-auto" style="margin-left: 100px;"></div> -->
+        <div class="base2 width-auto"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -18,11 +18,11 @@
  * ['7', '5', '1', '2', '3', '6', '8'];
  */
 function sort(list) {
-  const target = list.find(row => row.first).id;
+  let target = list.find(row => row.first).id;
   const result = [target];
   while (result.length !== list.length) {
-    for(let row of list) {
-      if(row.before === target) {
+    for (let row of list) {
+      if (row.before === target) {
         result.unshift(row.id);
         target = row.id;
         break;
@@ -33,6 +33,18 @@ function sort(list) {
       }
     }
   }
-  
+
   return result;
 }
+
+const arr = [
+  { id: '1', before: '2' },
+  { id: '2', before: '3' },
+  { id: '3', before: '6' },
+  { id: '5', first: true },
+  { id: '6', last: true },
+  { id: '7', before: '5' },
+  { id: '8', after: '6' },
+];
+const res = sort(arr);
+console.log('res :>> ', res);
