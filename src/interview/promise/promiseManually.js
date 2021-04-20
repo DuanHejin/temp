@@ -78,7 +78,9 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
 
 const p1 = new MyPromise((resolve, reject) => {
   console.log('init MyPromise');
-  resolve('test');
+  setTimeout(() => {
+    resolve('test');
+  }, 0)
 });
 
 p1.then((res) => {

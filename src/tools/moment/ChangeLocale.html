@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChangeLocale</title>
+  <script src="../../../node_modules/moment/moment.js"></script>
+</head>
+
+<body>
+  <div id="result"></div>
+
+</body>
+<script>
+  (function () {
+    const resDom = document.getElementById('result');
+    moment.locale('fr');
+    var m = moment(1316116057189);
+    const r = m.fromNow();
+    console.log('r :>> ', r);
+    const today = moment().format();
+    const fromNow = moment(1618611331790).fromNow();
+    // console.log('today :>> ', today);
+    resDom.innerHTML = fromNow;
+  })()
+</script>
+
+</html>
