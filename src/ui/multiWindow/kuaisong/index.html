@@ -1,0 +1,61 @@
+ 
+<!--
+ * @Description: xx模块
+ * @Company: zhoupudata
+ * @Author: duanhejin
+ * @Date: 2022-01-10 17:46:10
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>pda pro</title>
+        <link rel="shortcut icon" href="logo.png" type="image/png" />
+        <link rel="stylesheet" href="../../../assets/css/index.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>这是司机快送 窗口</h1>
+            <h2>备忘录 ios15，iphone11/iphone8</h2>
+            <div class="form-group">
+                <h3>1.修复签收精度问题</h3>
+                <div>
+                    <span>DistributionDetailScreen文件，_submitSign()，第2038行，手动增加/减少0.01元</span>
+                    <pre>
+good.orignQuantity = saleGoodsModel.originalQuantity;
+good.height = saleGoodsModel.height;
+// 230g安慕希高端希腊风味酸奶
+if (
+    good.goodsId === 547 &&
+    good.goodsName === '230g安慕希高端希腊风味酸奶'
+) {
+    good.subAmount = ObjectTools.parseQuantity(
+        good.subAmount - 0.01,
+    );
+    params.payAmount = ObjectTools.parseQuantity(
+        params.subAmount - 0.01,
+    );
+    signModel.payAmount = ObjectTools.parseQuantity(
+        signModel.payAmount - 0.01,
+    );
+}
+
+goodsList.push(good);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3>2.测试账号</h3>
+                <div>
+                    <pre>
+18168414082 aA111111
+13900000000 aA111111
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
