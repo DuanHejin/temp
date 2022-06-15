@@ -1,8 +1,20 @@
+/*
+ * @Description: xx模块
+ * @Company: zhoupudata
+ * @Author: duanhejin
+ * @Date: 2021-05-15 11:38:16
+ * @LastEditors: Please set LastEditors
+ */
 const express = require('express');
 const path = require('path');
 const app = express();
 const handleProduction = require('./utils/handleProduction');
-
+const apiRoutes = express.Router();
+const bodyParser = require('body-parser');
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 // set static resource
 app.use(express.static(path.resolve(__dirname, 'public')));
@@ -11,38 +23,24 @@ handleProduction(app, express, path);
 app.use('/', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, WithCredentials');
+  //允许凭证,解决session跨域丢失问题
+  res.header('Access-Control-Allow-Credentials', 'true')
   next();
 });
 
-let count = 0;
+const registTempService = require('./services/temp/tempService');
+registTempService(apiRoutes);
+const registLoginService = require('./services/mockZhoupu/loginService');
+registLoginService(apiRoutes);
+const registFileService = require('./services/mockZhoupu/fileService');
+registFileService(apiRoutes);
+const registStatus0Service = require('./services/mockZhoupu/status0Service');
+registStatus0Service(apiRoutes);
 
-app.get('/get/user/info', (req, res) => {
-  const searchTerm = req.query['searchTerm'];
-  let time = 0;
-  while (time < 400) {
-    time = Math.random() * 1000;
-  };
-  setTimeout(() => {
-    res.json({ id: 1, name: 'user-test', city: 10, count: count++, searchTerm });
-  }, time)
-});
 
-app.get('/get/city', (req, res) => {
-  const city = req.query['city'];
-  console.log('city :>> ', city);
-  res.json({ id: 10, name: 'city-test' });
-});
-
-app.get('/delayRes', (req, res) => {
-  const index = req.query['index'];
-  // const time = index == 2 ? 2000 : 500;
-  const time = 100;
-  setTimeout(() => {
-    res.json({ timestamp: Date.now() });
-  }, time);
-})
+// make sure regist services before 'app.use(apiRoutes)'
+app.use(apiRoutes);
 
 app.listen(3001, () => {
   console.log('server is running on port 3001')
