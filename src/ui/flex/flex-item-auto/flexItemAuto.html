@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../../assets/css/index.css" />
+        <style>
+            :root {
+                --num-per-line: 3
+            }
+            .wrap {
+                width: 345px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background-color: #f3f2f7;
+                padding: 5px;
+                align-items: center;
+            }
+            .item {
+                height: 100px;
+                width: calc((100% - var(--num-per-line) * 10px) / var(--num-per-line));
+                /* width: calc((100% - 30px) / 3); */
+                padding: 10px;
+                margin: 5px;
+            }
+            .item:nth-child(3n + 1) {
+                background-color: aqua;
+            }
+            .item:nth-child(3n + 2) {
+                background-color: burlywood;
+            }
+            .item:nth-child(3n + 3) {
+                background-color: bisque;
+            }
+        </style>
+    </head>
+    <body class="container">
+        <div class="form-group">
+            <pre>
+flex布局，
+随机子item数，
+要求从上往下，从左往右等宽排列；
+每行最多展示n个</pre
+            >
+        </div>
+        <div id="demo" class="wrap"></div>
+    </body>
+
+    <script>
+        const randomTxt = ["大幅度", "h", "就发来的撒娇放到拉萨", "12321331"];
+        function onload() {
+            const demoDom = document.querySelector("#demo");
+            const ITEM_NUM = 8;
+            const arr = new Array(ITEM_NUM).fill(0);
+            let itemDom;
+            const itemList = arr.map((_, index) => {
+                itemDom = document.createElement("div");
+                itemDom.innerHTML = `子item ${index + 1} ${
+                    randomTxt[Math.round(10 * Math.random()) % 4]
+                }`;
+                itemDom.className = "item";
+                demoDom.append(itemDom);
+                return itemDom;
+            });
+        }
+        document.onload = onload();
+    </script>
+</html>
