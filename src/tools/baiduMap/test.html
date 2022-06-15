@@ -1,0 +1,86 @@
+<!--
+ * @Author: hecw
+ * @LastEditors: duanhejin
+-->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script
+      type="text/javascript"
+      src="//api.map.baidu.com/api?type=webgl&v=3.0&ak=ciuQlV1deYqBYEkCo3vEZ8HDG0eh4FGw"
+    ></script>
+    <title>本地搜索的数据接口</title>
+    <style type="text/css">
+      body,
+      html,
+      #allmap {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-family: "微软雅黑";
+      }
+      #l-map {
+        height: 500px;
+        width: 100%;
+      }
+      #r-result {
+        width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="l-map"></div>
+    <div id="r-result"></div>
+  </body>
+</html>
+<script type="text/javascript">
+  // 百度地图API功能
+  var map = new BMapGL.Map("l-map");
+  map.centerAndZoom(new BMapGL.Point(116.404, 39.915), 11);
+
+  var options = {
+    onSearchComplete: function(results) {
+      // 判断状态是否正确
+      if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+        var s = [];
+        for (var i = 0; i < results.getCurrentNumPois(); i++) {
+          s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+        }
+        document.getElementById("r-result").innerHTML = s.join("<br/>");
+      }
+    }
+  };
+  var local = new BMapGL.LocalSearch(map, options);
+  local.search("公园");
+
+  // var url =
+  //   "http://api.map.baidu.com/geocoder/v2/?ak=ciuQlV1deYqBYEkCo3vEZ8HDG0eh4FGw&location=39.915,116.404&output=json";
+  var url =
+    "http://api.map.baidu.com/reverse_geocoding/v3/?ak=ciuQlV1deYqBYEkCo3vEZ8HDG0eh4FGw&output=json&coordtype=wgs84ll&location=31.225696563611,121.49884033194";
+  // var xmlhttp;
+  // if (window.XMLHttpRequest) {
+  //   // code for IE7+, Firefox, Chrome, Opera, Safari
+  //   xmlhttp = new XMLHttpRequest();
+  // } else {
+  //   // code for IE6, IE5
+  //   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  // }
+  // xmlhttp.onreadystatechange = function() {
+  //   if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+  //     //请求成功后执行
+  //     location.reload();
+  //   }
+  // };
+  // xmlhttp.open("GET", url, true);
+  // xmlhttp.send(null);
+
+  fetch(
+    url,
+    { mode:"no-cors" }
+  ).then(res => {
+    console.log("res :>> ", res);
+  });
+</script>
