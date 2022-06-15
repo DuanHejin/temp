@@ -29,6 +29,9 @@
  * ];
  * objArr.sort((a, b) => a.value - b.value); // [ { value: 2 }, { value: 3 }, { value: undefined }, { value: 1 }, { value: undefined }, { value: 6 }, { value: 7 } ] 
  * ```
+ * 
+ * @link https://zhuanlan.zhihu.com/p/488695567
+ * @link https://hufangyun.com/2017/sort-array/
  */
 export const example = void 0;
 
