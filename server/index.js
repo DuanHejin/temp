@@ -3,7 +3,7 @@
  * @Company: zhoupudata
  * @Author: duanhejin
  * @Date: 2021-05-15 11:38:16
- * @LastEditors: Please set LastEditors
+ * @LastEditors: 端和金 duanhejin@yozosoft.com
  */
 const express = require('express');
 const path = require('path');
@@ -37,6 +37,8 @@ const registFileService = require('./services/mockZhoupu/fileService');
 registFileService(apiRoutes);
 const registStatus0Service = require('./services/mockZhoupu/status0Service');
 registStatus0Service(apiRoutes);
+const registYozoFileService = require('./services/mockYozo/fileService');
+registYozoFileService(apiRoutes);
 
 
 // make sure regist services before 'app.use(apiRoutes)'
