@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../assets/css/index.css" />
+        <style>
+            :root {
+                --num-per-line: 3;
+            }
+            .wrap {
+                min-width: 100%;
+                height: 110px;
+                background-color: #f3f2f7;
+                padding: 5px;
+                overflow: auto;
+            }
+            .line {
+                width: max-content;
+            }
+            .item {
+                height: 40px;
+                padding: 10px;
+                margin: 5px;
+                display: inline-block;
+            }
+            .item:nth-child(3n + 1) {
+                background-color: aqua;
+            }
+            .item:nth-child(3n + 2) {
+                background-color: burlywood;
+            }
+            .item:nth-child(3n + 3) {
+                background-color: bisque;
+            }
+        </style>
+    </head>
+    <body class="container">
+        <div class="form-group">
+            <pre>瀑布流布局，子item宽度随机，要求瀑布流展示
+方案：按数据量，分为上下2行。循环数据，每次查找最短的行，将当前数据暂存到行中。最后渲染出来。
+            </pre>
+        </div>
+        <div id="demo" class="wrap">
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </body>
+
+    <script>
+        const randomTxt = ["大幅度", "h", "就发来的撒娇放到拉萨", "12321331"];
+
+        function getDataList(len = 20) {
+            const arr = new Array(len).fill(0);
+            return arr.map((_, index) => {
+                return `子item ${index + 1} ${
+                    randomTxt[Math.round(10 * Math.random()) % 4]
+                }`;
+            });
+        }
+
+        const firstRow = [];
+        const secondRow = [];
+
+        function getShortestRow2() {
+            const clacTotalLen = (row) =>
+                row.reduce((prev, curr) => {
+                    return prev + curr?.[1];
+                }, 0);
+            const firstTotalLen = clacTotalLen(firstRow);
+            const secondTotalLen = clacTotalLen(secondRow);
+            return firstTotalLen <= secondTotalLen ? firstRow : secondRow;
+        }
+
+        function splitDataList(list) {
+            // 中文算2字符
+            const getStrLen = (str = '') => {
+                const chArr = str.match(/[^\x00-\xff]/ig);
+                return str.length + chArr?.length
+             }
+            list.forEach((item) => {
+                const shortestRow = getShortestRow2();
+                shortestRow.push([item, getStrLen(item)]);
+            });
+        }
+
+        function appendItem() {
+            const fragments = [firstRow, secondRow].map((rowData) => {
+                const fragment = document.createDocumentFragment();
+                rowData.forEach(el => {
+                    let hotWord = document.createElement("span");
+                    hotWord.className = "item";
+                    hotWord.innerHTML = el[0];
+                    fragment.append(hotWord)
+                })
+                return fragment
+            })
+            const columns = Array.from(document.querySelectorAll(".line"));
+            columns.forEach((col, index) => {
+                col.append(fragments[index])
+            });
+        }
+
+        function onload() {
+            const dataList = getDataList(20);
+            splitDataList(dataList)
+            console.log(`|----    firstRow`, firstRow);
+            console.log(`|----    secondRow`, secondRow);
+            appendItem()
+        }
+        document.onload = onload();
+    </script>
+</html>
