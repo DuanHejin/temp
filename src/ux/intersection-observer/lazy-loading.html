@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <script src="./srcoll-end.polyfill.js"></script> -->
+        <style>
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+            }
+            .container {
+                width: 1000px;
+                margin: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            img {
+                margin: 10px;
+                height: 300px;
+                width: 200px;
+            }
+        </style>
+
+        <script>
+            const images = new Array(6)
+                .fill(0)
+                .map((_, index) => `./images/00${index + 1}.jpeg`);
+
+            let intersectionImgs = [];
+
+            let isScrolling = false;
+
+            function scroll() {
+                // console.log(`|----    onscroll`);
+                isScrolling = true;
+            }
+            window.addEventListener('scroll', scroll)
+
+            function scrollend() {
+                console.log(`|----    onscrollend`);
+                isScrolling = false;
+                console.log(`|----    intersectionImgs`, intersectionImgs);
+            }
+            window.addEventListener('scrollend', scrollend)
+
+            window.onload = function () {
+                const length = 100;
+                let res = [];
+                for (let i = 0; i < length; i++) {
+                    // 创建img元素的元素组
+                    const img = document.createElement("img");
+                    img.src = "";
+                    img.dataset.src = images[i % 6];
+                    img.dataset.key = `key_${i}`;
+                    res.push(img);
+                }
+                const container = document.querySelector(".container");
+                container.append(...res);
+
+                // 延迟0.5s
+                setTimeout(function () {
+                    const ob = new IntersectionObserver(
+                        (entries) => {
+
+                            for (const entry of entries) {
+                                const target = entry.target;
+                                if (entry.isIntersecting) {
+                                    console.log(`|----    出现在视口`);
+                                    target.src = target.dataset.src;
+                                    intersectionImgs.push(target.dataset.key)
+                                } else {
+                                    console.log(`|----    从视口中消失`);
+                                    const existIndex = intersectionImgs.findIndex((imgKey) => {
+                                        return imgKey === target.dataset.key;
+                                    })
+                                    if (existIndex > -1) {
+                                        intersectionImgs.splice(existIndex, 1)
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            root: null,
+                            // rootMargin: 0,
+                            threshold: 1,
+                        }
+                    );
+
+                    const imgDoms = document.querySelectorAll("img");
+                    imgDoms.forEach((img) => {
+                        ob.observe(img);
+                    });
+                }, 500);
+            };
+        </script>
+    </head>
+    <body>
+        <div class="container"></div>
+    </body>
+    <script></script>
+</html>
