@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../../assets/css/index.css" />
+        <title>16:9div</title>
+        <style>
+            .container {
+                padding: 10px;
+                background-color: aqua;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .parent {
+                width: 150px;
+                margin: 10px;
+                position: relative;
+            }
+
+            .box {
+                /* position: absolute; */
+                width: 100%;
+                /* height: 0; */
+                padding-top: 150%;
+                margin-top: -150%;
+                /* border: 1px solid red; */
+            }
+            .template-item-img {
+                border-radius: 4px;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container"></div>
+    </body>
+    <script>
+        const containerDom = document.querySelector(".container");
+        const NUM = 20;
+        const fragement = document.createDocumentFragment();
+        for (let i = 0; i < NUM; i++) {
+            const parentDom = document.createElement("div");
+            parentDom.classList.add("parent");
+            const boxDom = document.createElement("div");
+            boxDom.classList.add("box");
+
+            const imgDom = document.createElement("img");
+            imgDom.classList.add("template-item-img");
+            imgDom.src =
+                "https://epss1.epian1.com//biz/7c230e6b304a424eb40dc5edc8a10138.png?imageView2/3/w/350/h/454|imageView2/format/webp";
+            boxDom.appendChild(imgDom);
+
+            const nameDom = document.createElement("div");
+            nameDom.innerText = "课堂风采";
+            boxDom.appendChild(nameDom);
+
+            const imgPriceDom = document.createElement("img");
+            imgPriceDom.classList.add("template-item-price");
+            imgPriceDom.src =
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUWSURBVHgB3VhbKKxrGP7WWltiHKL2DLnAFFLbqZQV2mmNIlp2cTNz4UJslwZJIVdOpdTiTuzcaI/kEDe4GGWXU8lxJuQwTslQjvMTLuz3GevTb9b8c1hZtWY99Zr/+/73//7v/d7nPfzesWf4kiSSBJB4Mc/BCYmR5PYdezbiT+ZZBojxSPLfB/bsiUDmuYANge/pTwjzfAS8Z78GvNw2pLm5OS4+Pl7GfjK4ZUh+fr68pqamaWVlRTc+Pp7H3gCCIHQ9PT2N9vf3qzA+OTlpwnh9fb3cnXWQtT67oggvzM7OfvH19VVg/Pj4KJBYbPUODg6MsbGxX6TWwUbFY4VCEYffi4sL08PDgyU4OFjp5eUlIwNPLRaLmevt7OwY0tLSdFLr/sZcBJ1YCTcCwMsgtnpBQUGnjtbhG7fzXKR4LJPJ5BA+JkPPmAO4ZMjGxoY2JibG6vrl5eXRra0tk/h+ZmZmHt8ITs7RWgMDA6+8lZOTo8EB0TsmDQbDqkql+gtrwUN6vX4kPT09MyQk5A/mBA6pBTqNjIyUR0REpGBMtDD09PS8cm92dnZKUlKSNV729vbmdTrdKK4XFhbMQ0ND33gH/GffARjqiLKShpSVlSlbWlpqxHRyBzMzMzpbTmPN9vZ262YuLy937+/vBR4Tt7e35pubm1M+Rgyen5/v8meJCfN0aJKHIJm1jo6OLLSgH3tDEEVeYurq6uqUjHnxGAW2dcwTCAW+gDEXYkVkZ2fnR6m1JWMEtJicnNT5+/vLUlNTNZgjD9XV1tau4Xpzc1MbHR2tMpvNa7TBOv4c0qmUF6Oion7n1+Hh4a82JZfL40hexgh0HpccRF0Tk4DDOgJXtrW16e3dCwwMlDM30dDQMF9QUFCi1WrLwXk+v7+/P4d5CIIcc5TGrXMTExPdoBnmDg8PzVJru5x+geLiYjUVxU+4Bpfx6+fnh4yj5TpSdETiaG1tVYEiSqXyI0/dRLHdysrKbp4Y6uvr11BPqCAaMNfX16fhMTM2NmZ6E0Ns3Q/Yo4A9ZGRkKLKyskps58mzysHBwW7bedKNowxn1UdxpAMrcbS+U0O2t7cFZCDxXGJi4idxHIAOdIJzYp2pqalX9aSjo2O3qKholJ6TIbYwh0zl6N3wrr2iaw9Oe63V1VUBaZQLFS2TbTBTwJvEOhCixK7tWlRvuun0X2KDUnEHefTvwsLCurOzMxPFgKG3t/cfzEFMJtMccxFuNY3E0bzS0tJaXIOzKJBSumgs0Veh0XS2bkVFhQpZDBSlX7eTCOCSIWjdsSnKYi88pQrffn19bZcaKHz4RV+VnJz8ynu0joCUDcF4cXGxhNoQDb+POKKa0o3uNyAgQAE9qmlrzAkctiho1SkeUsSNHgKP+N6OesJrCeb5xry9vYkVMgXnNlIosg+yFgKeNh1J9SQyNDQ0UrwuPHx8fLxmW1/wPlBueHhYz2uYFD5LCVqEJxGWlpZGaENqfn96evrfJwf42oZbdfEc0qo9PTp9PVGwmOtRBW+i4jdrq9fV1dUotVeHHgGlqqqqao1Go56K2ai9JhAfRGFhYXJkIx8fH9nd3Z1A2Uigvkmorq7WI1lwXTJcgy4B2QqnTPcMjY2Nc2IdMRBfarU6Ljc3V40Ek5CQoJHSdfphBUpIPewu+Cfy96yHuEMKl7rv8hfizw5krUf2CwCGXDPPxwkMWWae7RXs3fjh68Uxe/4f8Jt+SP1gYN+XJPMkt/8DWWXmNIg4BugAAAAASUVORK5CYII=";
+            boxDom.appendChild(imgPriceDom);
+
+            parentDom.appendChild(boxDom);
+            fragement.appendChild(parentDom);
+        }
+        containerDom.appendChild(fragement);
+
+        function onload() {
+            const containerWidth = containerDom.clientWidth;
+            // 宽屏每行显示6个
+            // 窄屏每行显示5个
+            let numPerLine;
+            if (containerWidth > 1000) {
+                numPerLine = 7;
+            } else {
+                numPerLine = 5;
+            }
+            // 计算每个parent的宽度
+            const parentWidth =
+                (containerWidth - 20 * numPerLine - 2 * 10) / numPerLine;
+            const parentDomList = containerDom.querySelectorAll("div.parent");
+            for (let i = 0; i < parentDomList.length; i++) {
+                const parentDom = parentDomList[i];
+                // 设置parent宽度
+                parentDom.style.width = parentWidth + "px";
+            }
+        }
+        window.onload = onload();
+    </script>
+</html>
