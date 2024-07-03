@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-client": "npx babel --watch src --out-dir ./dist --presets react-app/prod",
-    "dev-server": "nodemon server/index.js"
+    "dev-server": "nodemon server/index.js",
+    "test:node:kooder": "nodemon src/node/kodder/write-json-v2.js"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,15 @@
   },
   "homepage": "https://github.com/DuanHejin/temp#readme",
   "dependencies": {
+    "@volcengine/veplayer": "1",
+    "axios": "0",
     "babel-cli": "6",
     "babel-preset-react-app": "3",
     "body-parser": "^1.19.0",
     "bootstrap": "3",
+    "dayjs": "^1.11.11",
     "decimal.js": "^10.3.1",
+    "exceljs": "^4.4.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
