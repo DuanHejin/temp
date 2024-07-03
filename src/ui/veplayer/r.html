@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <title>player</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta name="referrer" content="no-referrer">
+  <style>
+      body {
+          margin: 0
+      }
+  </style>
+  <link rel="stylesheet" href="//lf-unpkg.volccdn.com/obj/vcloudfe/sdk/@volcengine/veplayer/1.8.3/index.min.css">
+  <script src="//lf-unpkg.volccdn.com/obj/vcloudfe/sdk/@volcengine/veplayer/1.8.3/index.min.js"></script>
+</head>
+<body>
+<!--播放器容器大小可以自定义-->
+<div id="mse" style="width: 100vw; height: 46vw"></div>
+<script>
+  const playerSdkIns = new VePlayer({
+    // id: 'mse', // 传容器的dom id属性
+    root: document.getElementById('mse'), // 传容器的dom
+    url: "//voddemo-play.volcvod.com/453b1f794dfa49f4819b5d923658411a?auth_key=1776913683-830c08a311bb49fab40dbaa90ebd4db3-0-1b61cbd491235c69d89a694bd51a1027",
+    vodLogOpts: {
+      vtype: 'HLS',
+      tag: '普通视频',
+      line_app_id: 348293,
+      line_user_id: 'veplayer_web_demo'
+    }
+  })
+</script>
+</body>
+</html>

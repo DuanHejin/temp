@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <style>
+    #app {
+        height: 100%;
+        width: 50%;
+    }
+    .container {
+      height: 100%;
+      width: 50%;
+    }
+    .video {
+      width: 100%;
+    }
+    #root {
+      height: auto;
+      width: 100%;
+    }
+    .placeholder {
+      height: 200px;
+      width: 100%;
+      background: #ccc;
+    }
+    .veplayer-container .xgplayer video {
+      position: relative;
+    }
+  </style>
+  <link rel="stylesheet" href="https://lf-unpkg.volccdn.com/obj/vcloudfe/sdk/@volcengine/veplayer/1.8.1/index.min.css"/>
+<script src="https://lf-unpkg.volccdn.com/obj/vcloudfe/sdk/@volcengine/veplayer/1.8.1/index.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <!-- <div class="placeholder"></div> -->
+        <!-- video自由能力，可以撑开高度 -->
+        <!-- <video class="video" :src="url" controls></video> -->
+      <!-- <div class="placeholder"></div> -->
+      <div class="veplayer-container" id="demo_01"></div>
+    </div>
+  </div>
+</body>
+<script type="module">
+
+  var app = new Vue({
+    el: "#app", // 指定Vue实例与上面创建的DOM元素对应
+    data: {
+      url: 'https://t-media-volc.jianpian.info/465557033/article/20240425/3f6de4da3ece4654ae15ab3b40caa545.mov',
+    },
+    async mounted() {
+      await this.initPlayer()
+    },
+    methods: {
+      initPlayer() {
+        let rootDom
+        rootDom = this.$refs.rootRef
+        rootDom = document.getElementById('root')
+        console.log(`|----    rootDom`, rootDom);
+        this.playSdk = new VePlayer({
+          id: 'demo_01',
+          url: this.url,
+          ignores: ['playbackRate', 'PlaybackRateMobilePlugin', 'volume', 'pip'],
+          vodLogOpts: {
+            line_app_id: 583596,
+            line_user_id: this.visitorId, // 用户 ID， String 或者 int 类型，不传入将是一个根据用户浏览器随机生成的值。
+            tag: '普通视频' // 业务标签，对应业务类型，用于区分业务中不同的场景，方便后续进行多维度分析。
+          }
+        })
+      },
+    },
+  });
+</script>
+
+</html>
