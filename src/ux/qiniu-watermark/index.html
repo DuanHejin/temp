@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="../../assets/js/vue/2.7.6/vue.js"></script>
+  <style>
+    .container {
+      height: 100%;
+      width: 30%;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+        <template v-for="(item, index) in content">
+            <img :key="index" class="mp-article-music-audio" :src="item.img_url" />
+        </template>
+    </div>
+  </div>
+</body>
+<script>
+  var app = new Vue({
+    el: "#app", // 指定Vue实例与上面创建的DOM元素对应
+    data: {
+        id: 71121808,
+        nickname: '美友71121808',
+        content: [{
+            url: 'https://t-ss2.meipian.me/users/71121808/3653617e39104b5a8e22eeb9549bfa2c.jpeg',
+            width: 3024,
+            height: 4032
+        }, {
+            url: 'https://t-static2.meip0.me/users/71121808/9c96cea2-b850-4638-abbf-530570c43e6b.jpg',
+            width: 1556,
+            height: 720
+        }]
+    },
+    async mounted() {
+        this.content = this.content.map((item) => {
+            item.img_url = this.addWatermark(item.url)
+            return item
+        })
+    },
+    methods: {
+        addWatermark(url) {
+            const imageAlpha = 80
+            const imageMarginRight = 20
+            const logoUrlBase64 = 'aHR0cDovL3N0YXRpYzItc3JjLml2d2VuLmNvbS9sb2dvd2F0ZXIucG5n'
+
+            const textAlpha = 80
+            const textMarginRight = 20
+            const nickNameBase64 = 'QOe-juWPizcxMTIxODA4'
+            const idBase64 = '576O56-H5Y-3OiA3MTEyMTgwOA'
+
+            const fontBase64 = 'UWluaXUgRm9udA'
+            const fillBase64 = 'I0ZGRkZGRg'
+
+
+            const imageWm = `watermark/1/image/${logoUrlBase64}/dissolve/${imageAlpha}/dx/${imageMarginRight}/dy/${105}`
+            const text1Wm = `watermark/2/text/${nickNameBase64}/fontsize/${600}/font/${fontBase64}/fill/${fillBase64}/dissolve/${textAlpha}/dx/${imageMarginRight}/dy/${60}`
+            const text2Wm = `watermark/2/text/${idBase64}/fontsize/${600}/font/${fontBase64}/fill/${fillBase64}/dissolve/${textAlpha}/dx/${imageMarginRight}/dy/${15}`
+
+            const wm = [imageWm,text1Wm,text2Wm].join('%7c')
+            return `${url}?${wm}`
+        }
+    },
+  });
+</script>
+
+</html>

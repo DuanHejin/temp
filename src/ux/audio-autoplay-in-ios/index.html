@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="../../assets/js/vue/2.7.6/vue.js"></script>
+  <style>
+    .container {
+      height: 100px;
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <audio
+        ref="audioEl"
+        class="mp-article-music-audio"
+        :src="audioUrl"
+        preload="none"
+        loop="loop"
+      >
+        <!-- <source :src="audioUrl" type="audio/ogg">
+        Your browser does not support the audio element. -->
+      </audio>
+        <!-- @play="handlePlay"
+        @ended="handleEnded"
+        @pause="handlePause"
+        @timeupdate="handleTimeupdate"
+        @playing="handlePlaying" -->
+      <!-- 显示data属性值 -->
+      <button @click.stop.prevent="onClickPlay">播放</button>
+      <pre>
+        {{errorMessage}}
+      </pre>
+      <!-- 调用methods中的方法 -->
+    </div>
+  </div>
+</body>
+<script>
+  var app = new Vue({
+    el: "#app", // 指定Vue实例与上面创建的DOM元素对应
+    data: {
+      audioEl: undefined,
+      isPlaying: false,
+      errorMessage: '',
+    //   audioUrl: 'https://media-user.jianpian.info/user/7279486/music/20230809/6b9570fd4e79d134f3c68ac3b3c36356.ogg'
+      audioUrl: 'https://media-user.jianpian.info/user/7279486/music/20230809/6b9570fd4e79d134f3c68ac3b3c36356.ogg'
+    },
+    async mounted() {
+      await this.$nextTick()
+      this.audioEl = this.$refs.audioEl
+
+      if (this.audioEl) {
+        // this.audioEl.addEventListener('canplay', canplayResolve)
+        this.bindError()
+        this.audioEl.load()
+      }
+    },
+    methods: {
+      onClickPlay() {
+        if (!this.isPlaying) {
+          console.log(`|----    点击播放`);
+          this.audioEl && this.audioEl.play()
+          this.isPlaying = true
+        } else {
+          console.log(`|----    点击暂停`);
+          this.audioEl && this.audioEl.pause()
+          this.isPlaying = false
+
+        }
+        // alert(this.message); // 自定义方法
+      },
+      // Auto music
+      bindError() {
+        this.audioEl && this.audioEl.addEventListener('error', this.error)
+      },
+
+      error(e) {
+        console.log(`|----    音乐标签出错，e`, e);
+        this.errorMessage = JSON.stringify(e)
+        alert(e.isTrusted)
+        this.isAudioError = true
+      },
+    },
+  });
+</script>
+
+</html>

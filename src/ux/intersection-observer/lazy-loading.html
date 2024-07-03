@@ -34,18 +34,22 @@
 
             let isScrolling = false;
 
-            function scroll() {
-                // console.log(`|----    onscroll`);
-                isScrolling = true;
-            }
-            window.addEventListener('scroll', scroll)
+            // function scroll() {
+            //     // console.log(`|----    onscroll`);
+            //     isScrolling = true;
+            // }
+            // window.addEventListener('scroll', scroll)
 
-            function scrollend() {
-                console.log(`|----    onscrollend`);
-                isScrolling = false;
-                console.log(`|----    intersectionImgs`, intersectionImgs);
-            }
-            window.addEventListener('scrollend', scrollend)
+            // function scrollend() {
+            //     console.log(`|----    onscrollend`);
+            //     isScrolling = false;
+            //     console.log(`|----    intersectionImgs`, intersectionImgs);
+            // }
+            // window.addEventListener('scrollend', scrollend)
+
+            setTimeout(() => {
+                window.scrollTo(0, 200)
+            }, 2000);
 
             window.onload = function () {
                 const length = 100;

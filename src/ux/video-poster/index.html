@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="./js/vue/2.7.6/vue.js"></script>
+  <style>
+    .container {
+      width: 1000px;
+    }
+    p {
+      /* word-wrap: break-word;
+      white-space: pre-wrap; */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div>视频信息</div>
+      <div v-if="videoInfo">
+        <img :src="videoInfo.poster" :style="videoPosterStyle" alt="视频封面">
+      </div>
+      <!-- 显示data属性值 -->
+      <button @click="clickUpload">上传文件</button></button>
+      <!-- 调用methods中的方法 -->
+    </div>
+  </div>
+</body>
+<script type="module">
+  import { inputUploadFile, filesToArray, readMedia, readVideo } from './js/es/file.js'
+
+  var app = new Vue({
+    el: "#app", // 指定Vue实例与上面创建的DOM元素对应
+    data: {
+      message: "Hello Vue!", // 数据属性
+      mediaInfo: null,
+      videoInfo: null
+    },
+    computed: {
+      videoPosterStyle() {
+        const style = {}
+        if (this.videoInfo) {
+          style.height = `${this.videoInfo.videoHeight / 2}px`
+          style.width = `${this.videoInfo.videoWidth / 2}px`
+        }
+        return style
+      }
+    },
+    methods: {
+      async clickUpload() {
+        const files = await inputUploadFile({ accept: 'video'})
+        let fileArray = filesToArray(files)
+        fileArray.map((file) => {
+          return this.uploadFileFn(file)
+        })
+      },
+      async uploadFileFn(file) {
+        const fileUrl = URL.createObjectURL(file)
+        console.log(`|----    fileUrl`, fileUrl);
+        // const element = await readMedia(fileUrl)
+        // console.log(`|----    element`, element);
+        // this.mediaInfo = element
+        // const { duration } = element
+
+        const video = await readVideo(fileUrl)
+        console.log(`|----    video`, video);
+        this.videoInfo = video
+      }
+    },
+  });
+</script>
+
+</html>
