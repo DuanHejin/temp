@@ -8,8 +8,8 @@
   <script src="../../assets/js/vue/2.7.6/vue.js"></script>
   <style>
     .container {
-      height: 100px;
-      width: 100px;
+      height: 100%;
+      width: 100%;
     }
   </style>
 </head>
@@ -32,7 +32,9 @@
     },
     methods: {
       greet() {
-        alert(this.message); // 自定义方法
+        const ua = navigator.userAgent;
+        this.message = ua
+        console.log(`|----    ua`, ua);
       },
     },
   });

@@ -5,7 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script src=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.6/vue.min.js" integrity="sha512-5ZIU/uy3rfaFzmieOE7pDFAqw7S+OBDaOdDlPctIB7rTu1XiXCLbLwUMaDHvMEI+XraQn+IhF/wnkf7FKo8KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- <script src="../../assets/js/vue/2.7.6/vue.js"></script> -->
   <style>
     .container {
       height: 100%;
@@ -23,6 +25,10 @@
       width: 100%;
       background: #ccc;
     }
+    .veplayer-container {
+      height: auto;
+      width: 100%;
+    }
     .veplayer-container .xgplayer video {
       position: relative;
     }
@@ -37,11 +43,23 @@
       <div class="placeholder"></div>
       <div>
         <!-- video自由能力，可以撑开高度 -->
-        <video class="video" :src="url" controls></video>
+        <!-- <video class="video" :src="url" controls></video> -->
       </div>
+      <template v-for="(item, index) in items" :key="index">
+        <div>
+          <video class="video" :src="item" controls preload="none"></video>
+        </div>
+      </template>
       <div class="placeholder"></div>
       <div class="placeholder"></div>
-      <div id="root" ref="rootRef">
+      <div class="placeholder"></div>
+      <div class="placeholder"></div>
+      <div class="placeholder"></div>
+
+      <template v-for="(item, index) in MAX_LENGTH_ARRAY" :key="index">
+        <div class="veplayer-container" :id="'root' + `${index + 1}`" >
+      </template>
+      <!-- <div id="root" ref="rootRef"> -->
       </div>
       <div class="veplayer-container" id="demo_01"></div>
       <div class="placeholder"></div>
@@ -52,32 +70,47 @@
 </body>
 <script type="module">
 
+  let MAX_LENGTH
+  MAX_LENGTH = 10
+  MAX_LENGTH = 250
+
   var app = new Vue({
     el: "#app", // 指定Vue实例与上面创建的DOM元素对应
     data: {
+      MAX_LENGTH_ARRAY: new Array(MAX_LENGTH).fill(0),
+      items: [],
       url: 'https://t-media-volc.jianpian.info/465557033/article/20240314/fa64be31014a4612b793cb40803c3be7.mp4',
     },
     async mounted() {
-      await this.initPlayer()
+        this.initVideos()
+      // await this.initPlayer()
     },
     methods: {
-      initPlayer() {
+
+      initVideos() {
+        const timestamp = Date.now()
+        this.items = this.MAX_LENGTH_ARRAY.map((_, index) => this.url + `?timestamp=${timestamp}&x=${index}`)
+      },
+      async initPlayer() {
+        await this.$nextTick()
+
+        const timestamp = Date.now()
         let rootDom
-        rootDom = this.$refs.rootRef
-        rootDom = document.getElementById('root')
-        console.log(`|----    rootDom`, rootDom);
-        this.playSdk = new VePlayer({
-          id: 'demo_01',
-        //   root: rootDom,
-          // width: 355,
-          // height: 200,
-          url: this.url,
-          ignores: ['playbackRate', 'PlaybackRateMobilePlugin', 'volume', 'pip'],
-          vodLogOpts: {
-            line_app_id: 583596,
-            line_user_id: this.visitorId, // 用户 ID， String 或者 int 类型，不传入将是一个根据用户浏览器随机生成的值。
-            tag: '普通视频' // 业务标签，对应业务类型，用于区分业务中不同的场景，方便后续进行多维度分析。
-          }
+        this.MAX_LENGTH_ARRAY.map((_, index) => {
+          const id = `root${index + 1}`
+          rootDom = document.getElementById(id)
+          const playSdk = new VePlayer({
+            id,
+            url: this.url + `?timestamp=${timestamp}&x=${index}`,
+            ignores: ['playbackRate', 'PlaybackRateMobilePlugin', 'volume', 'pip'],
+            vodLogOpts: {
+              line_app_id: 583596,
+              line_user_id: this.visitorId, // 用户 ID， String 或者 int 类型，不传入将是一个根据用户浏览器随机生成的值。
+              tag: '普通视频' // 业务标签，对应业务类型，用于区分业务中不同的场景，方便后续进行多维度分析。
+            },
+            videoAttributes: { preload: 'none', 'x5-video-player-type': 'h5-page'}
+          })
+          return playSdk
         })
       },
     },

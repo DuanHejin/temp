@@ -32,7 +32,10 @@
     },
     methods: {
       greet() {
-        alert(this.message); // 自定义方法
+        // 创建a标签，模拟点击
+        var a = document.createElement("a");
+        a.href = "meipian://main.app.new/article/detail?mpExt=eyJtYXNrX2lkIjoiZTVvMnJ3bGkiLCJjdCI6Im1waWFuX2N1cnJlbmN5IiwiY2tleSI6IkNLMTQwMzAyODA0MjcyOSIsImNiX2NyZWF0ZV9hdCI6MTcyNzE0ODQxMCwiY2JfZXhwaXJlX3RpbWUiOjE4MDAsImNsaWVudF90eXBlIjoyLCJ0eXBlIjoibm90X3dlY2hhdCJ9";
+        a.click();
       },
     },
   });

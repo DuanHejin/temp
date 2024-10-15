@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="../../assets/js/vue/2.7.6/vue.js"></script>
+  <style>
+    .container {
+      height: 100px;
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <p>{{ message }}</p>
+      <!-- 显示data属性值 -->
+      <button @click="greet">Upload</button>
+      <!-- 调用methods中的方法 -->
+    </div>
+  </div>
+</body>
+<script>
+
+// 上传资源
+const inputUploadFile = async ({
+  accept = 'image/jpeg,image/jpg,image/png,image/gif',
+  multiple = false
+}) => {
+  const input = document.createElement('input')
+
+  input.type = 'file'
+  input.style.position = 'absolute'
+  input.style.top = '-9999px'
+  input.style.bottom = '-9999px'
+  input.accept = accept
+  input.multiple = multiple
+
+  document.body.appendChild(input)
+
+  input.click()
+
+  const files = await new Promise(resolve => {
+    input.addEventListener('change', evt => {
+      resolve((evt).target.files)
+      document.body.removeChild(input)
+    })
+  })
+  return files
+}
+
+
+  var app = new Vue({
+    el: "#app", // 指定Vue实例与上面创建的DOM元素对应
+    data: {
+      message: "Hello Vue!", // 数据属性
+    },
+    methods: {
+      async greet() {
+        const res = await inputUploadFile({})
+        console.log(`|---- `, res)
+      },
+    },
+  });
+</script>
+
+</html>
