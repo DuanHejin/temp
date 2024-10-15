@@ -15,7 +15,14 @@ async function createExcelBySheets(options = {}) {
 
     const wSheet = workbook.addWorksheet(name)
     wSheet.columns = columns || [ { header: 'path', key: 'path', width: 150 }]
-    const rows = list.map((item) => ([item]))
+    const rows = list.map((item) => {
+        if (Array.isArray(item)) {
+            return [...item]
+
+        } else {
+            return [item]
+        }
+    })
     wSheet.addRows(rows)
   }
 
@@ -28,3 +35,13 @@ async function createExcelBySheets(options = {}) {
 }
 
 exports.createExcelBySheets = createExcelBySheets
+
+
+const writeToExcel = async (workbookName, sheets) => {
+    const options = {
+        workbookName,
+        sheets,
+    };
+    await createExcelBySheets(options);
+};
+exports.writeToExcel = writeToExcel;
