@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-client": "npx babel --watch src --out-dir ./dist --presets react-app/prod",
     "dev-server": "nodemon server/index.js",
-    "test:node:kooder": "nodemon src/node/kodder/write-json-v2.js"
+    "test:node:kooder": "nodemon src/node/kodder/write-json-v2.js",
+    "test:node:checkUrls": "nodemon src/node/checkUrlStatus/index.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.4",
     "promise.allsettled": "^1.0.5",
+    "puppeteer": "^12.0.0",
     "sequelize": "^6.19.0"
   }
 }
